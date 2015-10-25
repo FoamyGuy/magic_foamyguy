@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <title></title>
+</head>
+<body>
+
+<form method="post" action="/save">
+<div class="group">
+    <input type="radio" name="suit" id="club" value="c" /><label for="club"><img src="images/club.png" alt="Stack Overflow" /></label>
+    <input type="radio" name="suit" id="diamond" value="d" /><label for="diamond"><img src="images/diamond.png" alt="Server Fault" /></label>
+    <input type="radio" name="suit" id="heart" value="h" /><label for="heart"><img src="images/heart.png" alt="Super User" /></label>
+    <input type="radio" name="suit" id="spade" value="s" /><label for="spade"><img src="images/spade.png" alt="Super User" /></label>
+</div>
+
+    <hr>
+    <div class="group">
+    {% for rank in ranks %}
+       <input type="radio" name="rank" id="{{ rank }}" value="{{ rank }}">
+       <label class="rank-btn" for="{{ rank }}">{{ rank }}</label>
+    {% endfor %}
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <input class="submit-btn" type="submit" value="Save"/>
+</form>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script>
+    $('.group input:radio').addClass('input_hidden');
+    $('.group label').click(function() {
+        $(this).addClass('selected').siblings().removeClass('selected');
+    });
+
+    $('.rank-btn').click(function() {
+        $(this).addClass('selected').siblings().removeClass('selected');
+    });
+</script>
+<style>
+
+
+    .submit-btn{
+        width: 90%;
+        text-align: center;
+        font-size: 6em;
+        background-color: aliceblue;
+    }
+
+    .rank-btn{
+        font-size: 8.8em;
+        width: 25%;
+        text-align: center;
+        float: left;
+
+    }
+    .input_hidden {
+        position: absolute;
+        left: -9999px;
+    }
+
+    .selected {
+        background-color: #777;
+    }
+
+    .group label {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+
+    .group label:hover {
+        background-color: #777;
+    }
+
+    .group label h1 {
+        padding: 3px
+    }
+
+    .group label img {
+        padding: 3px;
+    }
+
+
+
+</style>
+<script>
+$('#sites input:radio').addClass('input_hidden');
+$('#sites label').click(function() {
+    $(this).addClass('selected').siblings().removeClass('selected');
+});
+</script>
+</body>
+</html>
