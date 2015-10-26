@@ -39,9 +39,9 @@ def save_card():
         f.write("%s%s" % (rank, suit))
         f.close()
 
-
-
     else:
+        rank = request.args.get("rank")
+        suit = request.args.get("suit")
 
         f = open('card.txt', 'w')
         f.write("%s%s" % (rank, suit))
