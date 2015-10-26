@@ -22,17 +22,33 @@ def set_card():
     return render_template('set_card.html', ranks=ranks)
 
 
-@app.route('/save', methods=['POST'])
+@app.route('/save', methods=['GET'])
 def save_card():
-    suit=request.form['suit']
-    rank=request.form['rank']
-    f = open('card.txt', 'w')
-    f.write("%s%s" % (rank, suit))
-    f.close()
+    suits = ['h', 'd', 'c', 's']
+    ranks = ['a', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k']
+
+    bin = request.args.get("bin")
+    if bin:
+        suit_val = bin[:2]
+        rank_val = bin[2:]
+
+        suit = suits[int(suit_val, 2)]
+        rank = ranks[int(rank_val, 2)]
+
+        f = open('card.txt', 'w')
+        f.write("%s%s" % (rank, suit))
+        f.close()
+
+
+
+    else:
+
+        f = open('card.txt', 'w')
+        f.write("%s%s" % (rank, suit))
+        f.close()
+
+
     return redirect('/set')
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
