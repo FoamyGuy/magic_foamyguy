@@ -25,12 +25,12 @@ def set_card():
 @app.route('/save', methods=['GET'])
 def save_card():
     suits = ['h', 'd', 'c', 's']
-    ranks = ['a', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k']
+    ranks = ['a', 'k', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q']
 
     bin = request.args.get("bin")
     if bin:
-        suit_val = bin[:2]
-        rank_val = bin[2:]
+        suit_val = bin[-2:]
+        rank_val = bin[:4]
 
         suit = suits[int(suit_val, 2)]
         rank = ranks[int(rank_val, 2)]
